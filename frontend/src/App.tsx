@@ -1,9 +1,17 @@
+import { useEffect, useState } from "react";
 import NavBar from "./components/templates/navBar/navBar";
 import Produto from "./components/ui/produto/produto";
 
-import { produtos } from "./utils/produtos";
-
 export default function App(){
+  let [produtos, setProdutos] = useState([])
+  useEffect(()=>{
+    fetch("https://6ac65871bea0e72cf5c8e8b8.mockapi.io/api/produto")
+    .then((res) => res.json())
+    .then((data)=>{
+      setProdutos(data)
+    })
+  })
+
   return (
       <div className="h-dvh">
         <NavBar/>
